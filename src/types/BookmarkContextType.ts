@@ -1,9 +1,9 @@
-import { BookmarkState } from "./BookmarkListTypes"
+import { BookmarkState } from "./BookmarkListTypes";
 
 type BookmarkContextType = {
-    bookmarks: BookmarkState,
-    handleAddBookmark: (title: string, url: string) => void
-    handleRemoveBookmark: (id: number) => void
-}
+  bookmarks: BookmarkState;
+  handleAddBookmark: (title: string, url: string) => void;
+  handleRemoveBookmark: (id: number) => void;
+};
 
-export type {BookmarkContextType}
+export type { BookmarkContextType };

@@ -1,36 +1,58 @@
-import { useState } from "react"
-import { InitialFormInputProps } from "../../types/BookmarkFormTypes"
-import { useBookmarksContext } from "../../contexts/BookmarkContext"
+import { useState } from "react";
 
-const BookmarkForm = ():JSX.Element => {
-    const [formInput, setFormInput] = useState<InitialFormInputProps>({title: "", url: ""})
-    const {handleAddBookmark} = useBookmarksContext()
+import "./bookmarkForm.css"
+import { InitialFormInputProps } from "../../types/BookmarkFormTypes";
+import { useBookmarksContext } from "../../contexts/BookmarkContext";
 
-    const handleInput: React.ChangeEventHandler<HTMLInputElement>  = (e) => {
-        setFormInput({...formInput, [e.currentTarget.name]: e.currentTarget.value})
-    }
+const BookmarkForm = (): JSX.Element => {
+  const [formInput, setFormInput] = useState<InitialFormInputProps>({
+    title: "",
+    url: "",
+  });
+  const { handleAddBookmark } = useBookmarksContext();
 
-    const handleSubmit = (e:React.SyntheticEvent) => {
-        e.preventDefault()
-        handleAddBookmark(formInput.title, formInput.url)
-        setFormInput({...formInput, title: "", url: ""})
-    }
+  const handleInput: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    setFormInput({
+      ...formInput,
+      [e.currentTarget.name]: e.currentTarget.value,
+    });
+  };
 
-    return(
-        <div>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    Title: 
-                    <input type="text" name="title" value={formInput.title} required onChange={handleInput}/>
-                </label>
-                <label>
-                    URL: 
-                    <input type="url" name="url" value={formInput.url} required onChange={handleInput}/>
-                </label>
-                <button type="submit">Add</button>
-            </form>
-        </div>
-    )
-}
+  const handleSubmit = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    handleAddBookmark(formInput.title, formInput.url);
+    setFormInput({ ...formInput, title: "", url: "" });
+  };
 
-export {BookmarkForm}
+  return (
+    <div className="bookmark-form-container">
+      <form onSubmit={handleSubmit}>
+        <label className="label">
+          Title:
+          <input
+            type="text"
+            name="title"
+            value={formInput.title}
+            required
+            className="input"
+            onChange={handleInput}
+          />
+        </label>
+        <label className="label">
+          URL:
+          <input
+            type="url"
+            name="url"
+            value={formInput.url}
+            required
+            className="input"
+            onChange={handleInput}
+          />
+        </label>
+        <button type="submit" className="add-button">Add</button>
+      </form>
+    </div>
+  );
+};
+
+export { BookmarkForm };

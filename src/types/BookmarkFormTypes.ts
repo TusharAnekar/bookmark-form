@@ -1,6 +1,6 @@
 type InitialFormInputProps = {
-    title: string,
-    url: string
-}
+  title: string;
+  url: string;
+};
 
-export type {InitialFormInputProps}
+export type { InitialFormInputProps };
